@@ -1,0 +1,71 @@
+# LDU7icn — Main Configuration
+app:
+  name: LDU7icn
+  version: "0.1.0"
+  env: development
+  log_level: INFO
+
+whisper:
+  model: base          # tiny | base | small | medium | large
+  language: vi
+  device: cpu
+  audio:
+    sample_rate: 16000
+    chunk_duration: 3
+    vad_threshold: 0.5   # Voice Activity Detection
+
+yolo:
+  model_path: models/yolo/yolov8n.pt
+  confidence: 0.5
+  iou_threshold: 0.45
+  device: cpu
+  classes:             # null = detect all
+    - person
+    - car
+    - truck
+  camera:
+    index: 0
+    width: 640
+    height: 480
+    fps: 30
+
+flight:
+  connection: "udp:127.0.0.1:14550"
+  system_id: 1
+  defaults:
+    takeoff_altitude: 5.0
+    max_speed: 5.0
+    hover_time: 3
+  safety:
+    geofence_radius: 100
+    max_altitude: 50
+    low_battery_threshold: 20
+
+api:
+  host: 0.0.0.0
+  port: 8000
+  workers: 1
+
+mqtt:
+  broker: localhost
+  port: 1883
+  topics:
+    command: uav/command
+    telemetry: uav/telemetry
+    detection: uav/detection
+    status: uav/status
+
+commands:
+  # Natural language → action mapping
+  takeoff:    ["cất cánh", "bay lên", "take off", "takeoff", "lift off"]
+  land:       ["hạ cánh", "đáp xuống", "land", "landing"]
+  hover:      ["dừng lại", "đứng yên", "hover", "stop", "hold"]
+  forward:    ["đi thẳng", "tiến lên", "move forward", "go forward"]
+  backward:   ["lùi lại", "đi lùi", "move back", "go back"]
+  left:       ["sang trái", "rẽ trái", "go left", "turn left"]
+  right:      ["sang phải", "rẽ phải", "go right", "turn right"]
+  up:         ["lên cao hơn", "bay cao lên", "go up", "ascend"]
+  down:       ["xuống thấp hơn", "hạ xuống", "go down", "descend"]
+  track:      ["theo dõi", "bám theo", "track", "follow"]
+  return:     ["về nhà", "quay về", "return home", "rtl"]
+  emergency:  ["dừng khẩn cấp", "emergency stop", "kill"]

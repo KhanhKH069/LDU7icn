@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# uv / venv
+.venv/
+.uv/
+uv.lock
+
+# Environment
+.env
+*.env.local
+
+# Models (large files — use Git LFS or DVC)
+models/whisper/*.pt
+models/whisper/*.bin
+models/yolo/*.pt
+models/fine_tuned/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Test / Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Hardware / Generated
+hardware/cad_files/*.stl
+hardware/cad_files/*.step
