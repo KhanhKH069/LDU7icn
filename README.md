@@ -30,7 +30,7 @@
 
 ```
 LDU7icn/
-├── src/ldu7icn/
+├── src/
 │   ├── voice_control/              # M1
 │   │   ├── whisper_module/         # STT — OpenAI Whisper
 │   │   │   ├── transcriber.py      # Pipeline chuyển audio → text
